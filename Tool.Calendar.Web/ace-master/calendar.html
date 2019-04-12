@@ -674,7 +674,7 @@
                     next: '下一月'
                 },
                 currentTimezone: 'Asia/Beijing', 　　　　　　//设置时区
-                events: [
+                events: [   //function(start, end, callback) {} 初始化月份参数
                     //{
                     //    title: '全部日记：' + y + "年" + m+"月",
                     //    start: new Date(y,m,32),
@@ -713,15 +713,17 @@
 
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
-                drop: function (date) { // this function is called when something is dropped
+                drop: function (date) { // this function is called when something is dropped     
+                      //1，判断是否为当前天的后面一天
+                      //2，判断是有同一类如果有就弹出添加或者修改
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
                     var $extraEventClass = $(this).attr('data-class');
-
-
                     // we need to copy it, so that multiple events don't have a reference to the same object
                     var copiedEventObject = $.extend({}, originalEventObject);
 
+                    console.log("5555");
+                    console.log($extraEventClass);
                     // assign it the date that was reported
                     copiedEventObject.start = date;
                     copiedEventObject.allDay = true;
@@ -737,8 +739,9 @@
                     //    $(this).remove();
                     //}
 
-                }
-                ,
+                    ///
+
+                },
                 selectable: true,
                 selectHelper: true,
                 //select: function (start, end, allDay) {
@@ -804,11 +807,13 @@
                         console.log($(this).find("input[type=text]").attr("data-key"));
                         calEvent.title = $(this).find("input[type=text]").attr("data-key") + ":" + $(this).find("input[type=text]").val();
                         calendar.fullCalendar('updateEvent', calEvent);
+                        //添加或者修改方法
                         modal.modal("hide");
                     });
                     modal.find('button[data-action=delete]').on('click', function () {
                         calendar.fullCalendar('removeEvents', function (ev) {
                             return (ev._id == calEvent._id);
+                            //删除方法
                         })
                         modal.modal("hide");
                     });
@@ -825,7 +830,15 @@
                     // change the border color just for fun
                     //$(this).css('border-color', 'red');
 
-                }
+                }//,
+                //eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {  //拖拽事项之后的方法，allDay 是否全天事项，其他参数同上
+                //    console.log(event);
+                //    console.log(dayDelta);
+                //    console.log(minuteDelta);
+                //    console.log(allDay);
+                //    console.log(revertFunc);
+                    
+                //}
 
             });
 
