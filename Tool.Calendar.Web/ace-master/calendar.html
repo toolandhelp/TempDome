@@ -491,37 +491,37 @@
                                                 <div id="external-events">
                                                     <div class="external-event label-grey" data-class="label-grey">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        早餐
+                                                        早餐:
                                                     </div>
 
                                                     <div class="external-event label-success" data-class="label-success">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                       中餐
+                                                        中餐:
                                                     </div>
 
-                                                     <div class="external-event label-danger" data-class="label-danger">
+                                                    <div class="external-event label-danger" data-class="label-danger">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        交通
+                                                        晚餐:
                                                     </div>
 
                                                     <div class="external-event label-purple" data-class="label-purple">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        零食
+                                                        交通:
                                                     </div>
 
                                                     <div class="external-event label-yellow" data-class="label-yellow">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        水果
+                                                        水果:
                                                     </div>
 
                                                     <div class="external-event label-pink" data-class="label-pink">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        晚餐
+                                                        零食:
                                                     </div>
 
                                                     <div class="external-event label-info" data-class="label-info">
                                                         <i class="ace-icon fa fa-arrows"></i>
-                                                        其他
+                                                        其他:
                                                     </div>
 
                                                     <!--<label>
@@ -676,22 +676,28 @@
                 currentTimezone: 'Asia/Beijing', 　　　　　　//设置时区
                 events: [
                     //{
-                    //    title: '全部日记',
-                    //    start: new Date(y, m, 1),
+                    //    title: '全部日记：' + y + "年" + m+"月",
+                    //    start: new Date(y,m,32),
                     //    className: 'label-important'
                     //},
+                    //{
+                    //    title: '全部日记',
+
+                    //    start: new Date(y, m, 1),
+                    //    className: 'label-info'
+                    //}
                     //{
                     //    title: 'Long Event',
                     //    start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
                     //    end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
                     //    className: 'label-success'
                     //},
-                    //{
-                    //    title: 'Some Event',
-                    //    start: new Date(y, m, d - 3, 16, 0),
-                    //    allDay: false,
-                    //    className: 'label-info'
-                    //}
+                    {
+                        title: '其他:90',
+                        start: new Date(y, m, d - 3, 16, 0),
+                        allDay: true,
+                        className: 'label-info'
+                    }
                 ]
                 ,
 
@@ -708,7 +714,6 @@
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function (date) { // this function is called when something is dropped
-
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
                     var $extraEventClass = $(this).attr('data-class');
@@ -719,7 +724,7 @@
 
                     // assign it the date that was reported
                     copiedEventObject.start = date;
-                    copiedEventObject.allDay = false;
+                    copiedEventObject.allDay = true;
                     if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
 
                     // render the event on the calendar
@@ -727,69 +732,77 @@
                     $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
                     // is the "remove after drop" checkbox checked?
-                    if ($('#drop-remove').is(':checked')) {
-                        // if so, remove the element from the "Draggable Events" list
-                        $(this).remove();
-                    }
+                    //if ($('#drop-remove').is(':checked')) {
+                    //    // if so, remove the element from the "Draggable Events" list
+                    //    $(this).remove();
+                    //}
 
                 }
                 ,
                 selectable: true,
                 selectHelper: true,
-                select: function (start, end, allDay) {
-                    console.log(start);
-                    console.log(end);
-                    console.log(allDay);
-                    bootbox.prompt("新标题:", function (title) {
-                        console.log(title)
+                //select: function (start, end, allDay) {
+                //    console.log(start);
+                //    console.log(end);
+                //    console.log(allDay);
+                //    bootbox.prompt("新标题:", function (title) {
+                //        console.log(title)
 
-                        if (title !== null) {
-                            calendar.fullCalendar('renderEvent',
-                                {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: allDay,
-                                    className: 'label-info'
-                                },
-                                true // make the event "stick"
-                            );
-                        }
-                    });
+                //        if (title !== null) {
+                //            calendar.fullCalendar('renderEvent',
+                //                {
+                //                    title: title,
+                //                    start: start,
+                //                    end: end,
+                //                    allDay: allDay,
+                //                    className: 'label-info'
+                //                },
+                //                true // make the event "stick"
+                //            );
+                //        }
+                //    });
 
 
-                    calendar.fullCalendar('unselect');
-                }
-                ,
+                //    calendar.fullCalendar('unselect');
+                //}
+                //,
                 eventClick: function (calEvent, jsEvent, view) {
+
+                    //截取:
+                    var arry = calEvent.title.split(':');
+                    var key = arry[0];
+                    var value = arry[1];
+                    var allkey = value.length > 0 ? '修改' : '添加'; 
+                    allkey = allkey + '【' + key + '】';
 
                     //display a modal
                     var modal =
                         '<div class="modal fade">\
-                          <div class="modal-dialog">\
-                           <div class="modal-content">\
-                             <div class="modal-body">\
-                               <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;"> &times;</button>\
-                               <form class="no-margin">\
-                                  <label>修改 &nbsp;</label>\
-                                  <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-                                 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> 保存</button>\
-                               </form>\
-                             </div>\
-                             <div class="modal-footer">\
-                                <button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> 删除</button>\
-                                <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> 取消</button>\
-                             </div>\
-                          </div>\
-                         </div>\
-                        </div>';
+                                  <div class="modal-dialog">\
+                                   <div class="modal-content">\
+                                     <div class="modal-body">\
+                                       <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;"> &times;</button>\
+                                       <form class="no-margin">\
+                                          <label>' + allkey + ' &nbsp;</label>\
+                                          <input class="middle" autocomplete="off" type="text" data-key="'+ key+'" value="' + value + '" />\
+                                         <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> 保存</button>\
+                                       </form>\
+                                     </div>\
+                                     <div class="modal-footer">\
+                                        <button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> 删除</button>\
+                                        <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> 取消</button>\
+                                     </div>\
+                                  </div>\
+                                 </div>\
+                                </div>';
 
 
                     var modal = $(modal).appendTo('body');
                     modal.find('form').on('submit', function (ev) {
                         ev.preventDefault();
-
-                        calEvent.title = $(this).find("input[type=text]").val();
+                        // console.log($(this).find("label").text());
+                        console.log($(this).find("input[type=text]").attr("data-key"));
+                        calEvent.title = $(this).find("input[type=text]").attr("data-key") + ":" + $(this).find("input[type=text]").val();
                         calendar.fullCalendar('updateEvent', calEvent);
                         modal.modal("hide");
                     });
