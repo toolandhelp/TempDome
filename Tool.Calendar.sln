@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.Web", "Tool.Calendar.Web\Tool.Calendar.Web.csproj", "{837FDAB1-6381-46F3-880D-549ECAF8D915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tool.Calendar.Web", "Tool.Calendar.Web\Tool.Calendar.Web.csproj", "{837FDAB1-6381-46F3-880D-549ECAF8D915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.BLL", "Tool.Calendar.BLL\Tool.Calendar.BLL.csproj", "{AC82B6DC-D7DA-4E30-A2D8-CCD90155B45F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tool.Calendar.BLL", "Tool.Calendar.BLL\Tool.Calendar.BLL.csproj", "{AC82B6DC-D7DA-4E30-A2D8-CCD90155B45F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.DAL", "Tool.Calendar.DAL\Tool.Calendar.DAL.csproj", "{0C985644-68A7-498D-8D13-148559FD7063}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tool.Calendar.DAL", "Tool.Calendar.DAL\Tool.Calendar.DAL.csproj", "{0C985644-68A7-498D-8D13-148559FD7063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.Model", "Tool.Calendar.Model\Tool.Calendar.Model.csproj", "{8F652C46-B3A6-45BA-98D9-7800A6163C65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tool.Calendar.Model", "Tool.Calendar.Model\Tool.Calendar.Model.csproj", "{8F652C46-B3A6-45BA-98D9-7800A6163C65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.Util", "Tool.Calendar.Util\Tool.Calendar.Util.csproj", "{E718E05B-F2F4-4122-9270-F0DA888FA149}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tool.Calendar.Util", "Tool.Calendar.Util\Tool.Calendar.Util.csproj", "{E718E05B-F2F4-4122-9270-F0DA888FA149}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tool.Calendar.Service", "Tool.Calendar.Service\Tool.Calendar.Service.csproj", "{84D41523-C7E4-4E39-81AC-8BA451473B6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E718E05B-F2F4-4122-9270-F0DA888FA149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E718E05B-F2F4-4122-9270-F0DA888FA149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E718E05B-F2F4-4122-9270-F0DA888FA149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D41523-C7E4-4E39-81AC-8BA451473B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D41523-C7E4-4E39-81AC-8BA451473B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D41523-C7E4-4E39-81AC-8BA451473B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D41523-C7E4-4E39-81AC-8BA451473B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

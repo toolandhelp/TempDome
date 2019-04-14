@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tool.Calendar.BLL\Tool.Calendar.BLL.csproj" />
     <ProjectReference Include="..\Tool.Calendar.Model\Tool.Calendar.Model.csproj" />
+    <ProjectReference Include="..\Tool.Calendar.Service\Tool.Calendar.Service.csproj" />
     <ProjectReference Include="..\Tool.Calendar.Util\Tool.Calendar.Util.csproj" />
   </ItemGroup>
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tool.Calendar.BLL;
+using Tool.Calendar.Service;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +12,7 @@ namespace Tool.Calendar.Web.Controllers
 {
     public class UserController : Controller
     {
-        public BLL_User bLLUser = new BLL_User();
+        //public BLL_User bLLUser = new BLL_User();
         // GET: /<controller>/
         //public IActionResult Index()
         //{
@@ -34,6 +35,20 @@ namespace Tool.Calendar.Web.Controllers
         //    }
 
         //    return names;
+        //}
+
+        //private IConsumptionTypeService _productService;
+
+        //public UserController(IConsumptionTypeService productService)
+        //{
+        //    _productService = productService;
+        //}
+        //// GET api/values
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    var result = _productService.Test();
+        //    return new string[] { "value1", result };
         //}
     }
 }
