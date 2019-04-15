@@ -712,21 +712,19 @@
                 drop: function(date) { // this function is called when something is dropped     
                     //1，判断是否为当前天的后面一天
 
+                    //2，判断是有同一类如果有就弹出添加或者修改
                     debugger
                     var events = $('#calendar').fullCalendar('clientEvents', function(event) {
-                        var eventStart = event.start;
-                        var eventEnd = event.end ? event.end : null;
-                        var theDate = date;
-                        // Make sure the event starts on or before date and ends afterward
-                        // Events that have no end date specified (null) end that day, so check if start = date
-                        return (eventStart <= theDate && (eventEnd >= theDate) && !(eventStart < theDate && (eventEnd == theDate))) || (eventStart == theDate && (eventEnd === null));
+                        // var eventStart = event.start.format('YYYY-MM-DD');
+                        // var eventEnd = event.end ? event.end.format('YYYY-MM-DD') : null;
+                        // var theDate = date;
+                        // // Make sure the event starts on or before date and ends afterward
+                        // // Events that have no end date specified (null) end that day, so check if start = date
+                        // return (eventStart <= theDate && (eventEnd >= theDate) && !(eventStart < theDate && (eventEnd == theDate))) || (eventStart == theDate && (eventEnd === null));
                     });
                     debugger
                     console.log(events); // do whatever with the console.log(events[0]._allDay); 
 
-
-
-                    //2，判断是有同一类如果有就弹出添加或者修改
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
                     var $extraEventClass = $(this).attr('data-class');
@@ -739,7 +737,7 @@
                     bootbox.setDefaults("locale", "zh_CN");
                     //bootbox.setLocale("zh_CN");
                     bootbox.prompt({
-                        title: "请输入金额:",
+                        title: "请输入【" + key.split(':')[0] + "】消费金额:",
                         inputType: 'number',
                         callback: function(title) {
                             if (title !== null && title > 0) {
@@ -785,6 +783,18 @@
                 //    calendar.fullCalendar('unselect');
                 //}
                 //,
+
+                dayClick: function(date, jsEvent, view) {
+                    var events = $('#calendar').fullCalendar('clientEvents', function(event) {
+                        var eventStart = event.start.format('YYYY-MM-DD');
+                        var eventEnd = event.end ? event.end.format('YYYY-MM-DD') : null;
+                        var theDate = date.format('YYYY-MM-DD');
+                        // Make sure the event starts on or before date and ends afterward
+                        // Events that have no end date specified (null) end that day, so check if start = date
+                        return (eventStart <= theDate && (eventEnd >= theDate) && !(eventStart < theDate && (eventEnd == theDate))) || (eventStart == theDate && (eventEnd === null));
+                    });
+                    console.log(events); // do whatever with the console.log(events[0]._allDay); 
+                },
                 eventClick: function(calEvent, jsEvent, view) {
 
                         //截取:
