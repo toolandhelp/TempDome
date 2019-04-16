@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tool.Calendar.DAL
+namespace Tool.Calendar.Models
 {
     public class Class1
     {

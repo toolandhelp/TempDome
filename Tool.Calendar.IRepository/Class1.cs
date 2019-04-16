@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tool.Calendar.Util
+namespace Tool.Calendar.IRepository
 {
     public class Class1
     {

@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tool.Calendar.DAL;
-using Tool.Calendar.Model;
+
 
 namespace Tool.Calendar.Web
 {
@@ -36,8 +35,6 @@ namespace Tool.Calendar.Web
 
             //ef mysql 配置
             // services.AddDbContext<CalendarBaseContext>(options=>options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
-            services.AddDbContext<ConsumptionTypeContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//添加Mysql支持
 
             //services.AddUnitOfWork<ConsumptionTypeContext>();//添加UnitOfWork支持
             //services.AddScoped(typeof(IConsumptionTypeService), typeof(ConsumptionTypeService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
