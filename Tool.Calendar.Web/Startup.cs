@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Tool.Calendar.Repository.MysqlEFCore;
 
 namespace Tool.Calendar.Web
 {
@@ -34,10 +34,16 @@ namespace Tool.Calendar.Web
             });
 
             //ef mysql 配置
-            // services.AddDbContext<CalendarBaseContext>(options=>options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
+            services.AddDbContext<MySqlDbContext>(options=>options.UseMySQL(Configuration.GetConnectionString("MySqlConnection")));
 
             //services.AddUnitOfWork<ConsumptionTypeContext>();//添加UnitOfWork支持
             //services.AddScoped(typeof(IConsumptionTypeService), typeof(ConsumptionTypeService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
+            #region AutoMapper注入
+
+            //services.AddAutoMapper(typeof(Startup));
+
+            #endregion
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
