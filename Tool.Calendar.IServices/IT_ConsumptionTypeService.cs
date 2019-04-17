@@ -6,7 +6,7 @@ using Tool.Calendar.Models.Models;
 
 namespace Tool.Calendar.IServices
 {
-    public interface IT_ConsumptionTypeIService:IBaseServices<T_ConsumptionType>
+    public interface IT_ConsumptionTypeService:IBaseServices<T_ConsumptionType>
     {
     }
 }

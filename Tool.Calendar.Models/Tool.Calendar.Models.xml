@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tool.Calendar.Models</name>
+    </assembly>
+    <members>
+        <member name="P:Tool.Calendar.Models.Models.T_ConsumptionType.ConsumptionTypeGuid">
+            <summary>
+            项目的Guid唯一键
+            </summary>
+        </member>
+    </members>
+</doc>

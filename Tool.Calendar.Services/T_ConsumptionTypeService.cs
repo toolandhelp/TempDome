@@ -8,9 +8,9 @@ using Tool.Calendar.Services.Base;
 
 namespace Tool.Calendar.Services
 {
-    public class T_ConsumptionTypeService : BaseServices<T_ConsumptionType>, IT_ConsumptionTypeIService
+    public class T_ConsumptionTypeService : BaseServices<T_ConsumptionType>, IT_ConsumptionTypeService
     {
-        readonly IT_ConsumptionTypeRepository dal;
+         IT_ConsumptionTypeRepository dal;
         public T_ConsumptionTypeService(IT_ConsumptionTypeRepository dal)
         {
 

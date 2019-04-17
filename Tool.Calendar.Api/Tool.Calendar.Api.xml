@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tool.Calendar.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Tool.Calendar.Api.Controllers.ConsumptionTypeController">
+            <summary>
+            消费类型控制器
+            </summary>
+        </member>
+        <member name="M:Tool.Calendar.Api.Controllers.ConsumptionTypeController.#ctor(Tool.Calendar.IServices.IT_ConsumptionTypeService)">
+            <summary>
+            构造
+            </summary>
+            <param name="consumptionType"></param>
+        </member>
+        <member name="M:Tool.Calendar.Api.Controllers.ConsumptionTypeController.InitConsumptionType">
+             <summary>
+            初始化消费类型数据
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Tool.Calendar.Api.Controllers.ConsumptionTypeController.PostConsumptionType(Tool.Calendar.Models.Models.T_ConsumptionType)">
+            <summary>
+            post
+            </summary>
+            <param name="ConsumptionType">model实体参数</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
