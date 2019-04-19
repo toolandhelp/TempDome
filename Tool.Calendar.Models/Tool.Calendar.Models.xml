@@ -9,5 +9,35 @@
             项目的Guid唯一键
             </summary>
         </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.UserId">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.UserGuid">
+            <summary>
+            Guid主键
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.UserMail">
+            <summary>
+            用户邮箱
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.UserPwd">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.EncryptCode">
+            <summary>
+            加密码
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Models.Models.T_WebUser.CreateDateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
     </members>
 </doc>

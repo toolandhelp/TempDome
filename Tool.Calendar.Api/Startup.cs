@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 using AutoMapper;
 using Tool.Calendar.Repository.MysqlEFCore;
 using System.IO;
+using Swashbuckle.AspNetCore.Swagger;
+using Tool.Calendar.Api.AuthHelper;
 
 namespace Tool.Calendar.Api
 {
@@ -63,8 +65,8 @@ namespace Tool.Calendar.Api
                     Contact=new Swashbuckle.AspNetCore.Swagger.Contact { Name= "Tool.Calendar",Email= "dengpengp@gmail.com",Url= "http://96.45.186.146" }
                 });
 
-                //添加读取xml文件里的注释
-
+                #region 添加读取xml文件里的注释
+      
                 //  var basePath= PlatformServices.Default.Application.ApplicationBasePath;
                 var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "Tool.Calendar.Api.xml");
@@ -72,12 +74,43 @@ namespace Tool.Calendar.Api
 
                 var xmlModelPath = Path.Combine(basePath, "Tool.Calendar.Models.xml");// 这是models层的xml文件名
                 c.IncludeXmlComments(xmlModelPath, true);
+
+                #endregion
+
+                #region Token绑定ConfigureServices
+
+                //添加header验证信息
+                //c.OperationFilter<SwaggerHeader>();
+                var security = new Dictionary<string, IEnumerable<string>> { { "Tool.Calendar", new string[] { } }, };
+                c.AddSecurityRequirement(security);
+                //方案名称“Tool.Calendar”可自定义，上下一致即可
+                c.AddSecurityDefinition("Tool.Calendar", new ApiKeyScheme
+                {
+                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+                    Name = "Authorization",//jwt默认的参数名称
+                    In = "header",//jwt默认存放Authorization信息的位置(请求头中)
+                    Type = "apiKey"
+                });
+
+                #endregion
             });
+
 
 
             #endregion
 
+            #region 角色权限 授权
+            // 【授权】、这个和上边的异曲同工，好处就是不用在controller中，写多个 roles 。
+            // 然后这么写 [Authorize(Policy = "Admin")]
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
+                options.AddPolicy("SystemOrAdmin", policy => policy.RequireRole("Admin", "System"));
+            });
+            #endregion
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -105,9 +138,13 @@ namespace Tool.Calendar.Api
                 //app.UseHsts();
             }
             #region MiniProfiler 中间件
-            app.UseMiniProfiler();
-            #endregion
 
+            app.UseMiniProfiler();
+
+            #endregion
+            #region  自定义认证中间件
+            app.UseMiddleware<JwtTokenAuth>();
+            #endregion
 
             app.UseHttpsRedirection();
             app.UseMvc();

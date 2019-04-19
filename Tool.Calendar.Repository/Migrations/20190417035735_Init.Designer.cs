@@ -9,8 +9,8 @@ using Tool.Calendar.Repository.MysqlEFCore;
 namespace Tool.Calendar.Repository.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20190416035219_init")]
-    partial class init
+    [Migration("20190417035735_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,28 @@ namespace Tool.Calendar.Repository.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("t_ConsumptionTypes");
+                });
+
+            modelBuilder.Entity("Tool.Calendar.Models.Models.T_WebUser", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<string>("EncryptCode");
+
+                    b.Property<byte[]>("UserGuid")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<byte[], byte[]>(v => default(byte[]), v => default(byte[]), new ConverterMappingHints(size: 16)));
+
+                    b.Property<string>("UserMail");
+
+                    b.Property<string>("UserPwd");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("t_WebUser");
                 });
 #pragma warning restore 612, 618
         }

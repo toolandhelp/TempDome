@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Tool.Calendar.Api.AuthHelper;
 
 namespace Tool.Calendar.Api.Controllers
 {
@@ -21,7 +22,9 @@ namespace Tool.Calendar.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            TokenModelJwt tokenModel = new TokenModelJwt { Uid = 1, Role = "Admin" };
+            string token = JwtHelper.IssueJwt(tokenModel);//登录，获取到一定规则的 Token 令牌
+            return "value"+token;
         }
 
         // POST api/values

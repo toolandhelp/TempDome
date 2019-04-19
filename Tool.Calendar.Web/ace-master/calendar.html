@@ -628,7 +628,7 @@
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-
+            console.log(new Date(y, m, 1));
 
             var calendar = $('#calendar').fullCalendar({
                 //isRTL: true,
@@ -677,12 +677,12 @@
                     //    start: new Date(y,m,32),
                     //    className: 'label-important'
                     //},
-                    //{
-                    //    title: '全部日记',
+                    {
+                        title: '全部日记',
 
-                    //    start: new Date(y, m, 1),
-                    //    className: 'label-info'
-                    //}
+                        start: '2019-04-19 00:00:00',
+                        className: 'label-info'
+                    },
                     //{
                     //    title: 'Long Event',
                     //    start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
@@ -711,7 +711,8 @@
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function(date) { // this function is called when something is dropped     
                     //1，判断是否为当前天的后面一天
-
+                    console.log(new Date(y, m, d - 3, 16, 0) + "=============");
+                    console.log(new Date(y, m, 1) + "=============");
                     //2，判断是有同一类如果有就弹出添加或者修改
                     debugger
                     var events = $('#calendar').fullCalendar('clientEvents', function(event) {

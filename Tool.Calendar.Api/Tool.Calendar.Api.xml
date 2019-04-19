@@ -4,6 +4,53 @@
         <name>Tool.Calendar.Api</name>
     </assembly>
     <members>
+        <member name="M:Tool.Calendar.Api.AuthHelper.JwtHelper.IssueJwt(Tool.Calendar.Api.AuthHelper.TokenModelJwt)">
+            <summary>
+            颁发JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tool.Calendar.Api.AuthHelper.JwtHelper.SerializeJwt(System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="jwtStr"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Tool.Calendar.Api.AuthHelper.TokenModelJwt.Uid">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Api.AuthHelper.TokenModelJwt.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Tool.Calendar.Api.AuthHelper.TokenModelJwt.Work">
+            <summary>
+            职能
+            </summary>
+        </member>
+        <member name="F:Tool.Calendar.Api.AuthHelper.JwtTokenAuth._next">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Tool.Calendar.Api.AuthHelper.JwtTokenAuth.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:Tool.Calendar.Api.AuthHelper.JwtTokenAuth.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
         <member name="T:Tool.Calendar.Api.Controllers.ConsumptionTypeController">
             <summary>
             消费类型控制器
@@ -26,6 +73,13 @@
             post
             </summary>
             <param name="ConsumptionType">model实体参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tool.Calendar.Api.Controllers.WebUserController.Login(Tool.Calendar.Models.Models.T_WebUser)">
+            <summary>
+            登录
+            </summary>
+            <param name="userInfo"></param>
             <returns></returns>
         </member>
     </members>

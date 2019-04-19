@@ -19,5 +19,6 @@ namespace Tool.Calendar.Repository.MysqlEFCore
         //}
 
         public DbSet<T_ConsumptionType> t_ConsumptionTypes { get; set; }
+        public DbSet<T_WebUser> t_WebUser { get; set; }
     }
 }
