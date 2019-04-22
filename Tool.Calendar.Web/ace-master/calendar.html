@@ -487,31 +487,31 @@
                                         <div class="widget-body">
                                             <div class="widget-main no-padding">
                                                 <div id="external-events">
-                                                    <div class="external-event label-grey" data-class="label-grey">
+                                                    <div class="external-event label-grey" data-typeid="1" data-class="label-grey">
                                                         <i class="ace-icon fa fa-arrows"></i> 早餐:
                                                     </div>
 
-                                                    <div class="external-event label-success" data-class="label-success">
+                                                    <div class="external-event label-success" data-typeid="2" data-class="label-success">
                                                         <i class="ace-icon fa fa-arrows"></i> 中餐:
                                                     </div>
 
-                                                    <div class="external-event label-danger" data-class="label-danger">
+                                                    <div class="external-event label-danger" data-typeid="3" data-class="label-danger">
                                                         <i class="ace-icon fa fa-arrows"></i> 晚餐:
                                                     </div>
 
-                                                    <div class="external-event label-purple" data-class="label-purple">
+                                                    <div class="external-event label-purple" data-typeid="4" data-class="label-purple">
                                                         <i class="ace-icon fa fa-arrows"></i> 交通:
                                                     </div>
 
-                                                    <div class="external-event label-yellow" data-class="label-yellow">
+                                                    <div class="external-event label-yellow" data-typeid="5" data-class="label-yellow">
                                                         <i class="ace-icon fa fa-arrows"></i> 水果:
                                                     </div>
 
-                                                    <div class="external-event label-pink" data-class="label-pink">
+                                                    <div class="external-event label-pink" data-typeid="6" data-class="label-pink">
                                                         <i class="ace-icon fa fa-arrows"></i> 零食:
                                                     </div>
 
-                                                    <div class="external-event label-info" data-class="label-info">
+                                                    <div class="external-event label-info" data-typeid="7" data-class="label-info">
                                                         <i class="ace-icon fa fa-arrows"></i> 其他:
                                                     </div>
 
@@ -593,10 +593,63 @@
 
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
+        var basesrc = "http://localhost:8081/api/ConsumptionSum/";
         jQuery(function($) {
 
             /* initialize the external events
                 -----------------------------------------------------------------*/
+
+            // var ehtml="                                              <div class=\"external-event label-grey\" data-typeid='1' data-class=\"label-grey\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 早餐:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-success\" data-typeid='2' data-class=\"label-success\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 中餐:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-danger\"  data-typeid='3' data-class=\"label-danger\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 晚餐:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-purple\"  data-typeid='4' data-class=\"label-purple\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 交通:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-yellow\"  data-typeid='5' data-class=\"label-yellow\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 水果:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-pink\"  data-typeid='6' data-class=\"label-pink\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 零食:\n" +
+            //     "                                                    </div>\n" +
+            //     "\n" +
+            //     "                                                    <div class=\"external-event label-info\"  data-typeid='7' data-class=\"label-info\">\n" +
+            //     "                                                        <i class=\"ace-icon fa fa-arrows\"></i> 其他:\n" +
+            //     "                                                    </div>";
+
+            // $.ajax({
+            //     type: "Get",
+            //     url: basesrc + "GetTypeData",
+            //     dataType: "json",
+            //     success:function (data) {
+            //         if(data.success==true){
+            //             ehtml="";
+            //             for (var i=0;i<data.data.length;i++){
+            //                 ehtml+=" <div class=\"external-event "+data.data[i].ConsumptionTypeClass.trim()+"\"  data-typeid=\""+data.data[i].ConsumptionTypeId+"\" data-class=\""+data.data[i].ConsumptionTypeClass.trim()+"\"> <i class=\"ace-icon fa fa-arrows\"></i> "+data.data[i].ConsumptionTypeName.trim()+":</div>";
+            //             }
+            //             $("#external-events").append(ehtml);
+            //         }else
+            //         {
+
+            //         }
+            //     },
+            //     error:function (e) {
+            //         alert("接口出错，请刷新页面重试")
+            //     }
+            // });
+
+
+
 
             $('#external-events div.external-event').each(function() {
 
@@ -670,32 +723,37 @@
                     next: '下一月'
                 },
                 currentTimezone: 'Asia/Beijing',
-                　　　　　　 //设置时区
-                events: [ //function(start, end, callback) {} 初始化月份参数
-                    //{
-                    //    title: '全部日记：' + y + "年" + m+"月",
-                    //    start: new Date(y,m,32),
-                    //    className: 'label-important'
-                    //},
+                events: function(etart, end, callback)　 //设置时区
                     {
-                        title: '全部日记',
 
-                        start: '2019-04-19 00:00:00',
-                        className: 'label-info'
                     },
-                    //{
-                    //    title: 'Long Event',
-                    //    start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
-                    //    end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
-                    //    className: 'label-success'
-                    //},
-                    {
-                        title: '其他:90',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: true,
-                        className: 'label-info'
-                    }
-                ],
+                　　　　
+
+                // events: [ //function(start, end, callback) {} 初始化月份参数
+                //     //{
+                //     //    title: '全部日记：' + y + "年" + m+"月",
+                //     //    start: new Date(y,m,32),
+                //     //    className: 'label-important'
+                //     //},
+                //     {
+                //         title: '全部日记',
+                //
+                //         start: '2019-04-19 00:00:00',
+                //         className: 'label-info'
+                //     },
+                //     //{
+                //     //    title: 'Long Event',
+                //     //    start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
+                //     //    end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+                //     //    className: 'label-success'
+                //     //},
+                //     {
+                //         title: '其他:90',
+                //         start: new Date(y, m, d - 3, 16, 0),
+                //         allDay: true,
+                //         className: 'label-info'
+                //     }
+                // ],
 
                 /*eventResize: function(event, delta, revertFunc) {
 
@@ -725,37 +783,90 @@
                     });
                     debugger
                     console.log(events); // do whatever with the console.log(events[0]._allDay); 
+                    if (date._d > new Date()) {
+                        // bootbox.alert({
+                        //     message: "未来的消费数据还不可以填写哦",
+                        //     size: 'small',
+                        //     backdrop: true
+                        //         //className: 'rubberBand animated'
+                        // });
+                        var dialog =
+                            bootbox.dialog({
+                                message: '未来的消费数据还不可以填写哦',
+                                closeButton: false,
+                                backdrop: true
+                            });
 
-                    // retrieve the dropped element's stored Event Object
-                    var originalEventObject = $(this).data('eventObject');
-                    var $extraEventClass = $(this).attr('data-class');
-                    // we need to copy it, so that multiple events don't have a reference to the same object
-                    var copiedEventObject = $.extend({}, originalEventObject);
+                        // do something in the background
+                        // var t = setTimeout(dialog.modal('hide'), 50000);
+                        //dialog.modal('hide');
+                    } else {
+                        // retrieve the dropped element's stored Event Object
+                        var originalEventObject = $(this).data('eventObject');
+                        var $extraEventClass = $(this).attr('data-class');
+                        // we need to copy it, so that multiple events don't have a reference to the same object
+                        var copiedEventObject = $.extend({}, originalEventObject);
 
-                    //设置类型名称
-                    var key = $.trim($(this).text());
-                    //设置中文
-                    bootbox.setDefaults("locale", "zh_CN");
-                    //bootbox.setLocale("zh_CN");
-                    bootbox.prompt({
-                        title: "请输入【" + key.split(':')[0] + "】消费金额:",
-                        inputType: 'number',
-                        callback: function(title) {
-                            if (title !== null && title > 0) {
-                                //往数据库里加数据
-                                copiedEventObject.start = date;
-                                copiedEventObject.allDay = true;
-                                copiedEventObject.title = key + title;
-                                if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+                        //设置类型名称  类型ID
+                        var key = $.trim(originalEventObject.title);
+                        var $typeid = $(this).data('typeid')
+                            //设置中文
+                        bootbox.setDefaults("locale", "zh_CN");
+                        //bootbox.setLocale("zh_CN");
+                        bootbox.prompt({
+                            title: "请输入【" + key.split(':')[0] + "】消费金额:",
+                            inputType: 'number',
+                            callback: function(title) {
+                                if (title !== null && title > 0) {
 
-                                // render the event on the calendar
-                                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                                    debugger
+                                    //往数据库里加数据
 
+                                    var dataVal = {
+                                        "ConsumptionMoney": title,
+                                        "ConsumptionTypeId": $typeid,
+                                        "ConsumptionDate": date._d
+                                    }
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: basesrc + "AddOrUpdateDayData",
+                                        data: dataVal,
+                                        dataType: "json",
+                                        success: function(data) {
+                                            if (data.success == true) {
+
+                                                copiedEventObject.start = date;
+                                                copiedEventObject.allDay = true;
+                                                copiedEventObject.title = key + title;
+                                                if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+
+                                                // render the event on the calendar
+                                                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                                                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                                            } else {
+                                                bootbox.alert({
+                                                    message: data.msg,
+                                                    size: 'small',
+                                                    backdrop: true
+                                                });
+                                            }
+                                        },
+                                        error: function(e) {
+                                            var dialog =
+                                                bootbox.dialog({
+                                                    message: '服务器错误!',
+                                                    closeButton: true
+                                                });
+                                        }
+                                    });
+
+
+                                }
                             }
-                        }
-                    });
-
+                        });
+                    }
                 },
                 selectable: true,
                 selectHelper: true,
